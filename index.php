@@ -44,12 +44,33 @@ class Movie {
         $this->year = $_year;
         $this->director = $_director;
     }
-
     public function setDescription($_description){
-        return $this->description = $_description;
+        $this->description = $_description;
+    }
+    public function getDescription(){
+        return $this->description;
     }
 };
 
+// Movie Object
+$laCittaIncantata = new Movie($movies[0]['name'], $movies[0]['year'], $movies[0]['director']);
+$laCittaIncantata->poster = $movies[0]['poster'];
+$laCittaIncantata->setDescription($movies[0]['description']);
+
+// Movie Object
+$pulpFiction = new Movie($movies[1]['name'], $movies[1]['year'], $movies[1]['director']);
+$pulpFiction->poster = $movies[1]['poster'];
+$pulpFiction->setDescription($movies[1]['description']);
+
+// Movie Object
+$ilPadrino = new Movie($movies[2]['name'], $movies[2]['year'], $movies[2]['director']);
+$ilPadrino->poster = $movies[2]['poster'];
+$ilPadrino->setDescription($movies[2]['description']);
+
+
+
+
+var_dump($laCittaIncantata);
 ?>
 
 <!DOCTYPE html>
@@ -68,41 +89,47 @@ class Movie {
     <div class="container">
         <!-- Column -->
         <div class="col">
+            <!-- Movie Card -->
             <div class="card">
-                <img src="<?php echo $movies[0]['poster'] ?>" alt="">
+                <img src="<?php echo $laCittaIncantata->poster ?>" alt="<?php echo $laCittaIncantata->title ?> poster">
                 <div class="meta-data">
-                    <h2 class="title"><?php echo $movies[0]['name'] ?></h2>
-                    <span class="year">(<?php echo $movies[0]['year'] ?>)</span>
-                    <h3 class="director">Director: <?php echo $movies[0]['director'] ?></h3>
-                    <p class="description"><span>Description:</span> <?php echo $movies[0]['description'] ?></p>
+                    <h2 class="title"><?php echo $laCittaIncantata->name ?></h2>
+                    <span class="year">(<?php echo $laCittaIncantata->year ?>)</span>
+                    <h3 class="director">Director: <?php echo $laCittaIncantata->director ?></h3>
+                    <p class="description"><span>Description:</span> <?php echo $laCittaIncantata->getDescription() ?></p>
                 </div>
             </div>
         </div>
         
         <!-- Column -->
         <div class="col">
+            <!-- Movie Card -->
             <div class="card">
-                <img src="<?php echo $movies[1]['poster'] ?>" alt="">
+                <img src="<?php echo $pulpFiction->poster ?>" alt="<?php echo $pulpFiction->title ?> poster">
                 <div class="meta-data">
-                    <h2 class="title"><?php echo $movies[1]['name'] ?></h2>
-                    <span class="year">(<?php echo $movies[1]['year'] ?>)</span>
-                    <h3 class="director">Director: <?php echo $movies[1]['director'] ?></h3>
-                    <p class="description"><span>Description:</span> <?php echo $movies[1]['description'] ?></p>
+                    <h2 class="title"><?php echo $pulpFiction->name ?></h2>
+                    <span class="year">(<?php echo $pulpFiction->year ?>)</span>
+                    <h3 class="director">Director: <?php echo $pulpFiction->director ?></h3>
+                    <p class="description"><span>Description:</span> <?php echo $pulpFiction->getDescription() ?></p>
                 </div>
             </div>
         </div>
+        
         <!-- Column -->
         <div class="col">
+            <!-- Movie Card -->
             <div class="card">
-                <img src="<?php echo $movies[2]['poster'] ?>" alt="">
+                <img src="<?php echo $ilPadrino->poster ?>" alt="<?php echo $ilPadrino->title ?> poster">
                 <div class="meta-data">
-                    <h2 class="title"><?php echo $movies[2]['name'] ?></h2>
-                    <span class="year">(<?php echo $movies[2]['year'] ?>)</span>
-                    <h3 class="director">Director: <?php echo $movies[2]['director'] ?></h3>
-                    <p class="description"><span>Description:</span> <?php echo $movies[2]['description'] ?></p>
+                    <h2 class="title"><?php echo $ilPadrino->name ?></h2>
+                    <span class="year">(<?php echo $ilPadrino->year ?>)</span>
+                    <h3 class="director">Director: <?php echo $ilPadrino->director ?></h3>
+                    <p class="description"><span>Description:</span> <?php echo $ilPadrino->getDescription() ?></p>
                 </div>
             </div>
         </div>
+        
+        
 
     </div>
 </main>
