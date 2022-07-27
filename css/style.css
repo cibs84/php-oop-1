@@ -1,0 +1,48 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+img {
+    max-width: 100%;
+}
+
+/* COMMONS */
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* MAIN */
+main {
+    padding: 3rem 0;
+}
+.col {
+    width: calc((100% / 3) - 1.5rem);
+}
+.col .card {
+    height: 15rem;
+    display: flex;
+}
+.col .card img {
+    height: 100%;
+}
+.col .card .meta-data {
+    padding: 1rem;
+    overflow: auto;
+}
+.col .card .meta-data .year {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+.col .card .meta-data .director {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.col .card .meta-data .description span {
+    font-weight: 600;
+}
