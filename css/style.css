@@ -19,7 +19,7 @@ img {
 
 /* MAIN */
 main {
-    padding: 3rem 0;
+    padding: 3rem;
 }
 .col {
     width: calc((100% / 3) - 1.5rem);
@@ -33,7 +33,15 @@ main {
 }
 .col .card .meta-data {
     padding: 1rem;
+    padding-top: 0.5rem;
     overflow: auto;
+}
+.col .card .meta-data .stars {
+    color: grey;
+    margin-bottom: 0.5rem;
+}
+.col .card .meta-data .stars span.active {
+    color: rgb(255, 208, 0);
 }
 .col .card .meta-data .year {
     display: inline-block;
