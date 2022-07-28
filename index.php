@@ -34,7 +34,6 @@ $movies = [
     ]
 ];
 
-
 class Movie {
     public $name;
     public $year;
@@ -63,23 +62,29 @@ class Movie {
     }
 };
 
+$movieObjects = [];
+
 // Movie Object
 $laCittaIncantata = new Movie($movies[0]['name'], $movies[0]['year'], $movies[0]['director']);
 $laCittaIncantata->poster = $movies[0]['poster'];
 $laCittaIncantata->setDescription($movies[0]['description']);
 $laCittaIncantata->setGradeStars($movies[0]['grade']);
+$movieObjects[] = $laCittaIncantata;
 
 // Movie Object
 $pulpFiction = new Movie($movies[1]['name'], $movies[1]['year'], $movies[1]['director']);
 $pulpFiction->poster = $movies[1]['poster'];
-$pulpFiction->setDescription($movies[1]['description']);
+// $pulpFiction->setDescription($movies[1]['description']);
 $pulpFiction->setGradeStars($movies[1]['grade']);
+$movieObjects[] = $pulpFiction;
 
 // Movie Object
 $ilPadrino = new Movie($movies[2]['name'], $movies[2]['year'], $movies[2]['director']);
 $ilPadrino->poster = $movies[2]['poster'];
 $ilPadrino->setDescription($movies[2]['description']);
-$ilPadrino->setGradeStars($movies[2]['grade']);
+// $ilPadrino->setGradeStars($movies[2]['grade']);
+$movieObjects[] = $ilPadrino;
+
 ?>
 
 <!DOCTYPE html>
@@ -97,68 +102,41 @@ $ilPadrino->setGradeStars($movies[2]['grade']);
     
 <main>
     <div class="container">
-        <!-- Column -->
-        <div class="col">
-            <!-- Movie Card -->
-            <div class="card">
-                <img src="<?php echo $laCittaIncantata->poster ?>" alt="<?php echo $laCittaIncantata->title ?> poster">
-                <div class="meta-data">
-                    <div class="stars">
-                        <!-- Genero 5 stelle grigie e gli attribuisco il colore giallo (classe .active) in base al valore di [oggetto]->getGradeStars() -->
-                        <?php for ($i=1; $i <= 5; $i++) { ?>
-                            <span class="<?php echo $i <= $laCittaIncantata->getGradeStars() ? 'active' : '' ?>"><i class="fa-solid fa-star"></i></span>
-                        <?php } ?>
-                    </div>
-                    <h2 class="title"><?php echo $laCittaIncantata->name ?></h2>
-                    <span class="year">(<?php echo $laCittaIncantata->year ?>)</span>
-                    <h3 class="director">Director: <?php echo $laCittaIncantata->director ?></h3>
-                    <p class="description"><span>Description:</span> <?php echo $laCittaIncantata->getDescription() ?></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Column -->
-        <div class="col">
-            <!-- Movie Card -->
-            <div class="card">
-                <img src="<?php echo $pulpFiction->poster ?>" alt="<?php echo $pulpFiction->title ?> poster">
-                <div class="meta-data">
-                    <div class="stars">
-                        <!-- Genero 5 stelle grigie e gli attribuisco il colore giallo (classe .active) in base al valore di [oggetto]->getGradeStars() -->
-                        <?php for ($i=1; $i <= 5; $i++) { ?>
-                            <span class="<?php echo $i <= $pulpFiction->getGradeStars() ? 'active' : '' ?>"><i class="fa-solid fa-star"></i></span>
-                        <?php } ?>
-                    </div>
-                    <h2 class="title"><?php echo $pulpFiction->name ?></h2>
-                    <span class="year">(<?php echo $pulpFiction->year ?>)</span>
-                    <h3 class="director">Director: <?php echo $pulpFiction->director ?></h3>
-                    <p class="description"><span>Description:</span> <?php echo $pulpFiction->getDescription() ?></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Column -->
-        <div class="col">
-            <!-- Movie Card -->
-            <div class="card">
-                <img src="<?php echo $ilPadrino->poster ?>" alt="<?php echo $ilPadrino->title ?> poster">
-                <div class="meta-data">
-                    <div class="stars">
-                        <!-- Genero 5 stelle grigie e gli attribuisco il colore giallo (classe .active) in base al valore di [oggetto]->getGradeStars() -->
-                        <?php for ($i=1; $i <= 5; $i++) { ?>
-                            <span class="<?php echo $i <= $ilPadrino->getGradeStars() ? 'active' : '' ?>"><i class="fa-solid fa-star"></i></span>
-                        <?php } ?>
-                    </div>
-                    <h2 class="title"><?php echo $ilPadrino->name ?></h2>
-                    <span class="year">(<?php echo $ilPadrino->year ?>)</span>
-                    <h3 class="director">Director: <?php echo $ilPadrino->director ?></h3>
-                    <p class="description"><span>Description:</span> <?php echo $ilPadrino->getDescription() ?></p>
-                </div>
-            </div>
-        </div>
-        
-        
 
+        <!-- Stampo le Movie Card attraverso un foreach sull'array di objects $movieObjects -->
+        <?php foreach ($movieObjects as $thisMovieObject) { ?>
+            <!-- Column -->
+            <div class="col">
+                <!-- Movie Card -->
+                <div class="card">
+                    <img src="<?php echo $thisMovieObject->poster ?>" alt="<?php echo $thisMovieObject->title ?> poster">
+                    <div class="meta-data">
+
+                        <!-- Stampo le stelle SE è presente la valutazione nell'oggetto -->
+                        <?php if ($thisMovieObject->getGradeStars()) { ?>
+                            <div class="stars">
+                                <!-- Genero 5 stelle grigie e gli attribuisco il colore giallo (classe .active) in base al valore di [oggetto]->getGradeStars() -->
+                                <?php for ($i=1; $i <= 5; $i++) { ?>
+                                    <span class="<?php echo $i <= $thisMovieObject->getGradeStars() ? 'active' : '' ?>"><i class="fa-solid fa-star"></i></span>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
+
+                        <h2 class="title"><?php echo $thisMovieObject->name ?></h2>
+                        <span class="year">(<?php echo $thisMovieObject->year ?>)</span>
+                        <h3 class="director">Director: <?php echo $thisMovieObject->director ?></h3>
+
+                        <!-- Stampo la descrizione SE è presente nell'oggetto -->
+                        <?php if ($thisMovieObject->getDescription()) { ?>
+                            <p class="description"><span>Description:</span> <?php echo $thisMovieObject->getDescription() ?></p>
+                        <?php } ?>
+                        
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        
+        
     </div>
 </main>
 
